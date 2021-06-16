@@ -33,6 +33,23 @@ class Tree:
 
 
 
+    def traverse_inorder(self,node):
+        if node.left is not None:
+            self.traverse_inorder(node.left)
+
+        print(node.data)
+
+        if node.right is not None:
+            self.traverse_inorder(node.right)
+
+
+
+    def traverse(self):
+        if self.root is not None:
+            self.traverse_inorder(self.root)
+
+
+
     def insert(self,data):
         self.no_of_nodes+=1
 
@@ -44,12 +61,32 @@ class Tree:
 
 
 
+    def find_max(self):
+        node = self.root
+        while node.right is not None:
+            node = node.right
+        return node.data
+
+    def find_min(self):
+        node = self.root
+        while node.left is not None:
+            node = node.left
+        return node.data
+
 
 T = Tree()
 T.insert(12)
 T.insert(8)
 T.insert(18)
+T.insert(10)
+T.insert(1)
+T.insert(15)
+T.insert(25)
+T.insert(66)
+T.insert(11)
+T.insert(-5)
+
 print(T.no_of_nodes)
-print(T.root.data)
-print(T.root.left.data)
-print(T.root.right.data)
+T.traverse()
+print("max",T.find_max())
+print("min",T.find_min())
