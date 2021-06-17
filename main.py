@@ -1,3 +1,4 @@
+#creating a node class for each node in a tree
 class Node:
     def __init__(self,data):
 
@@ -5,7 +6,7 @@ class Node:
         self.right = None
         self.left = None
 
-
+#class for tree
 class Tree:
     def __init__(self):
         self.root = None
@@ -34,6 +35,7 @@ class Tree:
 
 
     def traverse_inorder(self,node):
+
         if node.left is not None:
             self.traverse_inorder(node.left)
 
@@ -43,11 +45,29 @@ class Tree:
             self.traverse_inorder(node.right)
 
 
+    def traverse_pre_order(self,node):
+        print(node.data)
+        if node.left is not None:
+            self.traverse_pre_order(node.left)
+
+        if node.right is not None:
+            self.traverse_pre_order(node.right)
+
+    def traverse_post_order(self,node):
+
+
+        if node.left is not None:
+            self.traverse_post_order(node.left)
+
+        if node.right is not None:
+            self.traverse_post_order(node.right)
+
+        print(node.data)
 
     def traverse(self):
         if self.root is not None:
-            self.traverse_inorder(self.root)
-
+            #self.traverse_inorder(self.root)
+            self.traverse_inorder_iterative(self.root)
 
 
     def insert(self,data):
@@ -72,6 +92,24 @@ class Tree:
         while node.left is not None:
             node = node.left
         return node.data
+
+    def traverse_inorder_iterative(self,node):
+        stack = []
+        current_node = node
+
+        while True:
+            if current_node is not None:
+                stack.append(current_node)
+                current_node = current_node.left
+
+            elif stack:
+                current_node = stack.pop()
+                print(current_node.data)
+                current_node = current_node.right
+            else: break
+
+
+
 
 
 T = Tree()
